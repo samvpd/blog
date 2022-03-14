@@ -26,11 +26,7 @@ body {
 	min-height: 100vh;
 	height: 100%;
 	background: rgba(49, 49, 49, 1);
-	// background: radial-gradient(
-	// 	circle,
-	// 	rgba(65, 65, 65, 1) 0%,
-	// 	rgba(49, 49, 49, 1) 100%
-	// );
+
 	header {
 		width: 100%;
 		height: 60px;
@@ -40,7 +36,6 @@ body {
 			rgba(82, 82, 82, 1) 0%,
 			rgba(65, 65, 65, 1) 77%
 		);
-		// box-shadow: 0px 10px 0px rgba($color: $light-gray, $alpha: 0.05);
 		box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
 			rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
@@ -56,13 +51,13 @@ body {
 
 		.authorized-buttons a h1 {
 			margin-right: 20px;
-			color: #d3d3d3 !important;
-			font-weight: 100 !important;
-			font-size: 18px !important;
-			-webkit-user-select: none !important;
-			user-select: none !important;
-			cursor: pointer !important;
-			outline: none !important;
+			color: #d3d3d3;
+			font-weight: 100;
+			font-size: 18px;
+			-webkit-user-select: none;
+			user-select: none;
+			cursor: pointer;
+			outline: none;
 		}
 
 		a {
@@ -105,7 +100,7 @@ body {
 		width: 100%;
 		max-width: 800px;
 		margin: 0 auto;
-		// padding: 0 40px;
+
 		.infinite-scroll-component {
 			gap: 40px;
 			display: grid;
@@ -131,7 +126,6 @@ body {
 			text-decoration: none;
 			cursor: pointer;
 			width: 100%;
-			// min-height: 186px;
 			box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
 				rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 		}
@@ -139,11 +133,7 @@ body {
 		.post-card {
 			background-color: $red;
 			padding: 20px;
-			// height: 100%;
-			// box-shadow: 5px 5px 2px 1px rgba(255, 255, 255, 0.03);
-			// box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.2);
 			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-
 			color: $color-white;
 
 			h1 {
@@ -177,7 +167,6 @@ body {
 	.post-about-container {
 		width: 100%;
 		height: 100%;
-		// padding: 0 40px;
 		max-width: 800px;
 		margin: 0 auto;
 
@@ -285,52 +274,8 @@ body {
 	}
 }
 
-@media (max-width: 576px) {
-	.post-about-container .post-about-card {
-		padding: 20px !important;
-	}
-	header .header-container {
-		max-width: 85% !important;
-	}
-	.container {
-		max-width: 85% !important;
-	}
-	.post-about-container {
-		padding: 0 !important;
-	}
-	.posts-container {
-		padding: 0 !important;
-	}
-	.post-card h1 {
-		font-size: 18px !important;
-	}
-	.post-card p {
-		font-size: 12px !important;
-		line-height: 20px !important;
-	}
-	.post-about-card h1 {
-		font-size: 24px !important;
-		line-height: 34px !important;
-	}
-	.skeleton-title {
-		width: 140px;
-		height: 24px !important;
-		background: #9b9b9b;
-		margin-bottom: 20px;
-	}
-	.skeleton-text {
-		height: 16px !important;
-	}
-	.skeleton-text2 {
-		height: 16px !important;
-	}
-	.skeleton-date {
-		height: 16px !important;
-	}
-}
-
 .login-container {
-	width: 500px;
+	max-width: 500px;
 	margin: 0 auto;
 
 	.create-title {
@@ -423,4 +368,58 @@ body {
 	margin-bottom: 20px;
 	letter-spacing: 0.01em;
 	text-align: center;
+}
+
+@media (max-width: 576px) {
+	.post-about-container .post-about-card {
+		padding: 20px !important;
+	}
+	header .header-container {
+		max-width: 85% !important;
+	}
+	.container {
+		max-width: 85% !important;
+	}
+	.post-about-container {
+		padding: 0 !important;
+	}
+	.posts-container {
+		padding: 0 !important;
+	}
+	.post-card h1 {
+		font-size: 18px !important;
+	}
+	.post-card p {
+		font-size: 12px !important;
+		line-height: 20px !important;
+	}
+	.post-about-card h1 {
+		font-size: 24px !important;
+		line-height: 34px !important;
+	}
+	.skeleton-title {
+		width: 140px;
+		height: 24px !important;
+		background: #9b9b9b;
+		margin-bottom: 20px;
+	}
+	.skeleton-text {
+		height: 16px !important;
+	}
+	.skeleton-text2 {
+		height: 16px !important;
+	}
+	.skeleton-date {
+		height: 16px !important;
+	}
+	.header-container .main-title {
+		font-size: 16px;
+	}
+	.header-container .authorized-buttons a {
+		margin-right: 10px !important;
+	}
+	.header-container .authorized-buttons h1 {
+		font-size: 16px !important;
+		margin-right: 0 !important;
+	}
 }
