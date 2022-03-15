@@ -1,10 +1,6 @@
 import React, { FC } from 'react'
 import { format } from 'date-fns'
 
-interface Props {
-	post: Nullable<IPostRaw['fields']>
-}
-
 export const PostAbout: FC<IPostRaw> = ({ fields, sys }) => {
 	const { title, text } = fields
 	const { createdAt } = sys

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, memo } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 
@@ -19,9 +19,7 @@ export const Home: FC = () => {
 	const { fetchPosts } = useActions()
 
 	useEffect(() => {
-		// if (!posts.length) {
 		fetchPosts()
-		// }
 	}, [])
 
 	if (error) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import { login } from '../store/action-creators/login'

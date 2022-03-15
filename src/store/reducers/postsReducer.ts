@@ -1,4 +1,4 @@
-import { PostsState, PostActionTypes, PostAction } from '../../types/posts'
+import { PostActionTypes, PostAction } from '../../types/posts'
 
 const initialState: AppState['posts'] = {
 	items: [],

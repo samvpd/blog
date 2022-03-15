@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, Dispatch, SetStateAction } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Skeleton } from '../components/Skeleton'

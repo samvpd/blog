@@ -8,12 +8,9 @@ interface Payload {
 	cb: (id: string) => void
 }
 export const createPost = ({ title, text, cb }: Payload) => {
-	return async (dispatch: Dispatch<PostAction>, getState: () => AppState) => {
+	return async (dispatch: Dispatch<PostAction>) => {
 		try {
-			// Тут должен редьюсер сделать `loading:true`
 			dispatch({ type: PostActionTypes.CREATE_INIT })
-			const currentState = getState()
-			const skip = currentState.posts.items.length
 
 			const data = {
 				fields: {
@@ -51,6 +48,7 @@ export const createPost = ({ title, text, cb }: Payload) => {
 				type: PostActionTypes.CREATE_DONE,
 				payload: resp.data,
 			})
+
 			cb(resp.data.sys.id)
 		} catch (e) {
 			dispatch({
