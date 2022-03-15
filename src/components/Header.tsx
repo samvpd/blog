@@ -18,7 +18,7 @@ export const Header = () => {
 		<header>
 			<div className='header-container'>
 				<Link to='/'>
-					<h1>{'< Blog />'}</h1>
+					<h1 className='main-title'>{'< Blog />'}</h1>
 				</Link>
 				{isAuthorized ? (
 					<div className='authorized-buttons'>

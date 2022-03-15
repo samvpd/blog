@@ -28,9 +28,11 @@ export const postsReducer = (
 				}),
 				state.map
 			)
+
 			const newIds = payload.items
 				.map((post) => post.sys.id)
 				.filter((id) => !state.items.includes(id))
+
 			return {
 				...state,
 				loading: false,
@@ -41,6 +43,31 @@ export const postsReducer = (
 			}
 		case PostActionTypes.FETCH_POSTS_FAIL:
 			return { ...state, loading: false, error: action.payload }
+		case PostActionTypes.CREATE_INIT:
+			return {
+				...state,
+				loading: true,
+			}
+		case PostActionTypes.CREATE_DONE:
+			const data = action.payload
+
+			const newData = {
+				...data,
+				fields: {
+					title: data.fields.title['en-US'],
+					text: data.fields.text['en-US'],
+				},
+			}
+
+			return {
+				...state,
+				loading: false,
+				items: [action.payload.sys.id, ...state.items],
+				map: {
+					[action.payload.sys.id]: newData,
+					...state.map,
+				},
+			}
 		default:
 			return state
 	}

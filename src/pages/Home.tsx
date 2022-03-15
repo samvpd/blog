@@ -19,11 +19,10 @@ export const Home: FC = () => {
 	const { fetchPosts } = useActions()
 
 	useEffect(() => {
-		console.log('posts len: ', posts.length)
-		if (!posts.length) {
-			fetchPosts()
-		}
-	}, [posts.length])
+		// if (!posts.length) {
+		fetchPosts()
+		// }
+	}, [])
 
 	if (error) {
 		return <h1>{error}</h1>

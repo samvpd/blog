@@ -21,12 +21,14 @@ export const loginReducer = (state = initialState, action: any): LoginState => {
 					isAuthorized: true,
 					error: null,
 				}
+
 			return {
 				...state,
 				isAuthorized: false,
 				error: 'Wrong login or password',
 			}
 		}
+
 		case 'LOGOUT':
 			return {
 				...state,

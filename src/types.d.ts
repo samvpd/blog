@@ -50,7 +50,8 @@ interface IEntryResponse<T extends IContentfulEntry> {
 }
 
 declare interface PostState {
-	map: Record<string, IPostRaw>
+	map: any
+	// map: Record<string, IPostRaw>
 	items: string[]
 	loading: boolean
 	error: Nullable<string>

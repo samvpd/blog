@@ -4,6 +4,7 @@ import axios from 'axios'
 import * as yup from 'yup'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Navigate, useNavigate } from 'react-router'
+import { useActions } from '../hooks/useActions'
 
 const validationSchema = yup.object().shape({
 	title: yup.string().required(),
@@ -21,53 +22,65 @@ const initialValues: FormState = {
 
 export const Create = () => {
 	const isAuthorized = useTypedSelector((state) => state.login.isAuthorized)
-	const [error, setError] = useState<Nullable<string>>(null)
-	const [loading, setLoading] = useState<Boolean>(false)
+
 	let navigate = useNavigate()
+
+	const { createPost } = useActions()
+
+	const { loading } = useTypedSelector((state) => ({
+		loading: state.posts.loading,
+	}))
+
 	if (!isAuthorized) {
 		return <Navigate to='/login' />
 	}
 
 	const onSubmit = async (formState: FormState) => {
-		try {
-			setLoading(true)
-			const data = {
-				fields: {
-					title: {
-						'en-US': formState.title,
-					},
-					text: {
-						'en-US': formState.text,
-					},
-				},
-			}
+		createPost({
+			title: formState.title,
+			text: formState.text,
+			cb: (id) => {
+				navigate(`../posts/${id}`, { replace: true })
+			},
+		})
 
-			const resp = await axios.post<IPostRaw>(
-				`https://api.contentful.com/spaces/${process.env.REACT_APP_SPACE_KEY}/environments/${process.env.REACT_APP_ENV_KEY}/entries`,
-				data,
-				{
-					headers: {
-						authorization: `Bearer ${process.env.REACT_APP_API_CREATE_KEY}`,
-						'content-type':
-							'application/vnd.contentful.management.v1+json',
-						'X-Contentful-Content-Type': 'blogPost',
-					},
-				}
-			)
-			const respPublish = await axios.request<IPostRaw>({
-				url: `https://api.contentful.com/spaces/${process.env.REACT_APP_SPACE_KEY}/environments/${process.env.REACT_APP_ENV_KEY}/entries/${resp.data.sys.id}/published`,
-				method: 'PUT',
-				headers: {
-					authorization: `Bearer ${process.env.REACT_APP_API_CREATE_KEY}`,
-					'X-Contentful-Version': resp.data.sys.version,
-				},
-			})
-
-			await setLoading(false)
-			await navigate(`../posts/${resp.data.sys.id}`, { replace: true })
-		} catch (err) {
-			setError(String(err))
-		}
+		// try {
+		// 	setLoading(true)
+		// 	const data = {
+		// 		fields: {
+		// 			title: {
+		// 				'en-US': formState.title,
+		// 			},
+		// 			text: {
+		// 				'en-US': formState.text,
+		// 			},
+		// 		},
+		// 	}
+		// 	const resp = await axios.post<IPostRaw>(
+		// 		`https://api.contentful.com/spaces/${process.env.REACT_APP_SPACE_KEY}/environments/${process.env.REACT_APP_ENV_KEY}/entries`,
+		// 		data,
+		// 		{
+		// 			headers: {
+		// 				authorization: `Bearer ${process.env.REACT_APP_API_CREATE_KEY}`,
+		// 				'content-type':
+		// 					'application/vnd.contentful.management.v1+json',
+		// 				'X-Contentful-Content-Type': 'blogPost',
+		// 			},
+		// 		}
+		// 	)
+		// 	const respPublish = await axios.request<IPostRaw>({
+		// 		url: `https://api.contentful.com/spaces/${process.env.REACT_APP_SPACE_KEY}/environments/${process.env.REACT_APP_ENV_KEY}/entries/${resp.data.sys.id}/published`,
+		// 		method: 'PUT',
+		// 		headers: {
+		// 			authorization: `Bearer ${process.env.REACT_APP_API_CREATE_KEY}`,
+		// 			'X-Contentful-Version': resp.data.sys.version,
+		// 		},
+		// 	})
+		// 	setLoading(false)
+		// 	navigate(`../posts/${resp.data.sys.id}`, { replace: true })
+		// } catch (err) {
+		// 	setError(String(err))
+		// }
 	}
 
 	return (
@@ -116,7 +129,7 @@ export const Create = () => {
 						</button>
 					</form>
 					{/* {errorMessage ? <p>{errorMessage}</p> : null} */}
-					{error ? <p>{error}</p> : ''}
+					{/* {error ? <p>{error}</p> : ''} */}
 					{loading ? (
 						<p className='create-loading'>Loading...</p>
 					) : (

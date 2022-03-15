@@ -9,8 +9,9 @@ export const PostCard: FC<Props> = ({ id }) => {
 	const { fields, sys } = useTypedSelector((state) => state.posts.map[id])
 	const { title, text } = fields
 	const { createdAt } = sys
+
 	const subString = (str: string, n: number): string => {
-		return str.length > n ? str.substr(0, n - 1) + '...' : str
+		return str && str.length > n ? str.substr(0, n - 1) + '...' : str
 	}
 	return (
 		<div className='post-card'>
